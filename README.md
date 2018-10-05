@@ -2,18 +2,19 @@
 new_relic_sample
 ================
 
-
-Add a short description here!
+Grab some files and parse them
 
 
 Description
 ===========
+Run dev_install.sh to pip install the dependancies
+Run run_tests.sh to run the tests. 
 
-A longer description of your project goes here...
+This is setup to run as a console app or to be called directly 
 
+This will prompt for a path
+python src\__main__.py '.\README.md'
 
-Note
-====
+This will log out the path if the path is valid
+python src\__main__.py 
 
-This project has been set up using PyScaffold 3.1. For details and usage
-information on PyScaffold see https://pyscaffold.org/.
