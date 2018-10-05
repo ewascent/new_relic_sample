@@ -16,8 +16,8 @@ class ValidatePather(unittest.TestCase):
         try:
             pather(testargs)
         except InsufficientArguments:
-           expected = 'exception returned'
-        result = self.assertEqual('exception returned', expected)
+            expected = 'exception returned'
+        self.assertEqual('exception returned', expected)
 
     def test_returns_valid_path(self):
         """Pather returns a valid path from argv"""
@@ -27,7 +27,7 @@ class ValidatePather(unittest.TestCase):
         sut = pather(testargs)
         expected = [dir_path]
         actual = sut
-        result = self.assertEqual(expected, actual)
+        self.assertEqual(expected, actual)
 #try:
 #    f = pather(argv)
 #    print(f)
