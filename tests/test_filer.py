@@ -61,8 +61,10 @@ class ValidatePather(unittest.TestCase):
     def test_reader(self):
         """does this read and provide a list of words"""
         file = path.join(abspath(curdir), 'data\\simple_data.txt')
-        actual = filer.reader(file=file, mode="r+b")
-        expected = ["one", "two", "three", "four", "five"]
+        sut = filer.reader(file=file, mode="r+b")
+        for triple in sut:
+            actual = triple
+        expected = ( "three", "four", "five")
         self.assertEqual(expected, actual)
 
     #def test_file_buffering(self):

@@ -61,12 +61,10 @@ def reader(file, mode="r+b", chunk_size=1000):
                 words = words + clean_up(data)
     else:
         raise ArgumentTypeException
-##TODO make data a streaming list
     word_list = words.split(' ')
-    chunker(word_list, chunk_size = 3)
-##TODO: split into triples
+    words_final = chunker(word_list, chunk_size = 3)
 
-    return word_list
+    return words_final
 
 
 #TODO
