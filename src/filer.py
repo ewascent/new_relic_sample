@@ -41,7 +41,7 @@ def clean_up(raw_data=b'', chunk_size=0):
         if unicodedata.category(chr)[0] != "C")
     filter_punctuation_chars = punctuation_filter('', filter_control_chars)
     filter_case = filter_punctuation_chars.lower()
-    filter_spacing = ' '.join(filter_case.slpit())
+    filter_spacing = ' '.join(filter_case.split())
     return filter_spacing.lower()
 
 def reader(file, mode="r+b", chunk_size=1000):
@@ -61,12 +61,11 @@ def reader(file, mode="r+b", chunk_size=1000):
                 words = words + clean_up(data)
     else:
         raise ArgumentTypeException
-
-
+##TODO make data a streaming list
+    word_list = words.split(' ')
 #        for line in filter_punctuation_characters:
 #            for word in line.split():
 #                word_list.append(word)
-##TODO make data a streaming list
 ##TODO: split into triples
 #
     return word_list
