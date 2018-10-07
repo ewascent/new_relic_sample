@@ -36,11 +36,13 @@ def clean_up(raw_data=b'', chunk_size=0):
     utf8_data = raw_data.decode('utf8')
     punctuation_filter = re.compile('[%s]' % re.escape(punctuation)).sub
         #for chr in utf8_data:
-    data_sans_control_chars = "".join(
+    filter_control_chars = "".join(
         chr for chr in utf8_data
         if unicodedata.category(chr)[0] != "C")
-    clean_data = punctuation_filter('', data_sans_control_chars)
-    return clean_data.lower()
+    filter_punctuation_chars = punctuation_filter('', filter_control_chars)
+    filter_case = filter_punctuation_chars.lower()
+    filter_spacing = ' '.join(filter_case.slpit())
+    return filter_spacing.lower()
 
 def reader(file, mode="r+b", chunk_size=1000):
     """read files, spilt content into three word structs (or tuple threes)
