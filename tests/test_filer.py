@@ -1,11 +1,10 @@
 """Unit tests for the filer module"""
 from os import path
+from os.path import abspath
+from os import curdir
 import unittest2 as unittest
 from error import InsufficientArguments
-from filer import pather
-from filer import clean_up
-from filer import chunker
-from filer import reader
+import filer
 
 class ValidatePather(unittest.TestCase):
 
@@ -14,7 +13,7 @@ class ValidatePather(unittest.TestCase):
         testargs = ["args assumes first element is python file path"]
         expected = 'no love'
         try:
-            pather(testargs)
+            filer.pather(testargs)
         except InsufficientArguments:
             expected = 'exception returned'
         self.assertEqual('exception returned', expected)
@@ -25,34 +24,34 @@ class ValidatePather(unittest.TestCase):
         bad_path = '/usr/bin/funkypath'
         testargs = [bad_path, dir_path]
         expected = [dir_path]
-        actual = pather(testargs)
+        actual = filer.pather(testargs)
         self.assertEqual(expected, actual)
 
     def test_clean_data_punctuation(self):
         """we strip punctuation from input"""
         raw_data = "A swift!!! raven never flies?"
-        expected = "A swift raven never flies"
-        actual = clean_up(raw_data)
+        expected = "a swift raven never flies"
+        actual = filer.clean_up(raw_data)
         self.assertEqual(expected, actual)
 
     def test_clean_data_simple(self):
         """we strip punctuation from input"""
         raw_data = "A swift raven never flies"
-        expected = "A swift raven never flies"
-        actual = clean_up(raw_data)
+        expected = "a swift raven never flies"
+        actual = filer.clean_up(raw_data)
         self.assertEqual(expected, actual)
 
     def test_clean_data_control_characters(self):
         """we strip control characters from input"""
         raw_data = "A \nswift raven \rnever flies"
-        expected = "A swift raven never flies"
-        actual = clean_up(raw_data)
+        expected = "a swift raven never flies"
+        actual = filer.clean_up(raw_data)
         self.assertEqual(expected, actual)
 
     def test_chunker_splits_sentance(self):
         """given a sentance ensure you get the expected number of triples"""
         data = ['one','two', 'three', 'four', 'five']
-        sut = chunker(data=data, chunk_size=3)
+        sut = filer.chunker(data=data, chunk_size=3)
         expected = [('one', 'two', 'three'),('two', 'three', 'four'),('three', 'four', 'five')]
         x = 0
         for actual in sut:
@@ -61,7 +60,10 @@ class ValidatePather(unittest.TestCase):
 
     def test_reader(self):
         """does this read and provide a list of words"""
-        data = './data/simple_data.txt'
-        actual = reader(data)
+        file = path.join(abspath(curdir), 'data\\simple_data.txt')
+        actual = filer.reader(file=file, mode="r+b")
         expected = ["one", "two", "three", "four", "five"]
         self.assertEqual(expected, actual)
+
+    #def test_file_buffering(self):
+#TODO
