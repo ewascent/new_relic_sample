@@ -5,6 +5,7 @@ import sys
 from utilities import logleveler
 
 class ValidateLogLeveler(unittest.TestCase):
+    """test the utilities module"""
     def test_maps_critical(self):
         """Logleveler maps critical"""
         actual = logleveler('critical')
