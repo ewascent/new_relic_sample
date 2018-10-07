@@ -28,18 +28,19 @@ def pather(arguments= []):
 
     return _paths
 
-def clean_up(raw_data):
-    """remove control characters and punctuation"""
-    #utf8_data = raw_data.decode('utf8')
-    print(raw_data)
+def clean_up(raw_data=b'', chunk_size=0):
+    """remove control characters and punctuation
+    assume we are getting non string input and convert to utf8
+
+    """
+    utf8_data = raw_data.decode('utf8')
     punctuation_filter = re.compile('[%s]' % re.escape(punctuation)).sub
-    filter_control_characters = "".join(
-        chr for chr in raw_data
+        #for chr in utf8_data:
+    data_sans_control_chars = "".join(
+        chr for chr in utf8_data
         if unicodedata.category(chr)[0] != "C")
-    filter_punctuation_characters = punctuation_filter('', filter_control_characters)
-    filter_casing = filter_punctuation_characters.lower()
-    #TODO equalize spaces
-    return filter_casing
+    clean_data = punctuation_filter('', data_sans_control_chars)
+    return clean_data.lower()
 
 def reader(file, mode="r+b", chunk_size=1000):
     """read files, spilt content into three word structs (or tuple threes)

@@ -29,21 +29,21 @@ class ValidatePather(unittest.TestCase):
 
     def test_clean_data_punctuation(self):
         """we strip punctuation from input"""
-        raw_data = "A swift!!! raven never flies?"
+        raw_data = b"A swift!!! raven never flies?"
         expected = "a swift raven never flies"
         actual = filer.clean_up(raw_data)
         self.assertEqual(expected, actual)
 
     def test_clean_data_simple(self):
         """we strip punctuation from input"""
-        raw_data = "A swift raven never flies"
+        raw_data = b"A swift raven never flies"
         expected = "a swift raven never flies"
         actual = filer.clean_up(raw_data)
         self.assertEqual(expected, actual)
 
     def test_clean_data_control_characters(self):
         """we strip control characters from input"""
-        raw_data = "A \nswift raven \rnever flies"
+        raw_data = b"A \nswift raven \rnever flies"
         expected = "a swift raven never flies"
         actual = filer.clean_up(raw_data)
         self.assertEqual(expected, actual)
