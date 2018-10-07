@@ -63,11 +63,9 @@ def reader(file, mode="r+b", chunk_size=1000):
         raise ArgumentTypeException
 ##TODO make data a streaming list
     word_list = words.split(' ')
-#        for line in filter_punctuation_characters:
-#            for word in line.split():
-#                word_list.append(word)
+    chunker(word_list, chunk_size = 3)
 ##TODO: split into triples
-#
+
     return word_list
 
 
