@@ -88,12 +88,33 @@ def chunker(data, chunk_size = 3):
         yield result
 
 def match_maker(collection_to_map, this_many_results = 100):
-    """match_maker does a map aggregation on a collection generator object
+    """
+    match_maker does a map aggregation on a collection generator object
+    returns a list of tuple twos of variable length tuples
+    in the format [(('as', 'was', 'suz'), 4), (('unicorn', 'wunicorn', 'suz'), 3)]
 
     ARGUMENTS:
     collection_to_map: the thing you want to map and aggregate
     how_many_results: the number of results to return. Naming things is hard.
     """
-
     results = Counter(collection_to_map).most_common(this_many_results)
+    return results
+
+def outputter(some_collection, this_many_results):
+    """outputter
+
+    ARGUMENTS:
+    Collection some_collection: set you want to format for output.
+    e.g. Pass in filer.reader(some_file)
+    Int this_many_results: number of results
+    """
+    possible_matches = some_collection
+    result_set = match_maker(possible_matches, this_many_results)
+    results = []
+
+    for result in result_set:
+        match = result[0]
+        match_string = ' '.join(match)
+        rank = result[1]
+        results.append(f"Result {rank} was \"{match_string}\".")
     return results
