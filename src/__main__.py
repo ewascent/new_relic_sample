@@ -1,6 +1,7 @@
 """main is main"""
 import sys
 from error import InsufficientArguments
+from error import ArgumentTypeException
 import filer
 from utilities import setup_logging
 
@@ -24,16 +25,12 @@ def main(_args=None):
             for result in results:
                 print(result)
 
-
-
-
     except InsufficientArguments:
-        _logger.warning("Recieved no file input")
-        print("Please provide a valid file path.")
-        _path = input("Enter a fully qualified path: ")
-        _files = ["bogus first entry"]
-        _files.append(_path)
-        files = pather(_files)
+        _logger.error("Recieved no file input")
+        raise
+    except ArgumentTypeException:
+        _logger.error("Not a valid file path")
+        raise
     except:
         _logger.error("Unexpected error: %s", sys.exc_info()[0])
         print("Unexpected error:", sys.exc_info()[0])
