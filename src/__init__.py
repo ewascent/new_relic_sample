@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""standard init file"""
 from pkg_resources import get_distribution, DistributionNotFound
 
 try:

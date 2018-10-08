@@ -18,12 +18,13 @@ def main(_args=None):
         files = _args
         result_count = 100
         for file in files:
-            _logger.info(f"Recieved path to file: {file}")
-            results = filer.outputter(some_collection=filer.reader(file),
-                                      this_many_results=result_count)
-            print(f'Top {result_count} matches for file {file}')
-            for result in results:
-                print(result)
+            if "__main__.py" not in file:
+                _logger.info(f"Recieved path to file: {file}")
+                results = filer.outputter(some_collection=filer.reader(file),
+                                          this_many_results=result_count)
+                print(f'Top {result_count} matches for file {file}')
+                for result in results:
+                    print(result)
 
     except InsufficientArguments:
         _logger.error("Recieved no file input")

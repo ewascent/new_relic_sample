@@ -2,6 +2,7 @@
 import logging
 import sys
 def logleveler(loglevel_string):
+    """map log level common names to python key values"""
     _loglevel = {
         'critical': lambda x: 50,
         'error': lambda x: 40,
