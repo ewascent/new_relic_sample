@@ -32,4 +32,5 @@ python src/__main__.py .\tests\data\some_words.txt .\tests\data\more_words.txt
 Note
 
 ================
-This project has been set up using PyScaffold 3.1. For details and usage see https://pyscaffold.org/.
+
+This project has been set up using PyScaffold 3.1. There is some unused boiler plate floating around.
