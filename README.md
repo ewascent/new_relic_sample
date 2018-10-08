@@ -14,14 +14,19 @@ Description
 
 ================
 
-First run the run_tests.sh or run_tests.ps1.
+First run the 
+```run_tests.sh``` 
+or
+```run_tests.ps1```
+
 This will install all dependencies and will create two files from project Gutengurg.
 If you have proxy issues there is a fallback data generator, but it is anemic.
 The files are generated to keep the git clone small.
 
 Next run the package.
+```
 python src/__main__.py .\tests\data\some_words.txt .\tests\data\more_words.txt
-
+```
 ================
 
 Note
