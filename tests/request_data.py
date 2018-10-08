@@ -3,11 +3,14 @@ import requests
 from requests import request
 from urllib3.connectionpool import connection_from_url
 
-_file = './data/some_words.txt'
+file_set = [
+['http://www.gutenberg.org/cache/epub/26884/pg26884.txt', './data/some_words.txt'],
+['http://www.gutenberg.org/files/58042/58042-0.txt', '.\data\more_words.txt']
+]
 
-def get_test_data(file):
+def get_test_data(file, text_url):
     '''get test data and write it'''
-    text_url = 'http://www.gutenberg.org/cache/epub/26884/pg26884.txt'
+
     http = connection_from_url(url=text_url)
     req = http.request(method='GET', url=text_url)
     raw_data = "".encode()
@@ -43,4 +46,5 @@ def write_to_file(file, data):
         _file.write(data)
     return _file
 
-get_test_data(file=_file)
+for file_pair in file_set:
+    get_test_data(file = file_pair[1], text_url=file_pair[0])

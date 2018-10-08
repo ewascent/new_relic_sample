@@ -4,7 +4,7 @@ import unittest2 as unittest
 import sys
 from utilities import logleveler
 
-class ValidateLogLeveler(unittest.TestCase):
+class ValidateUtilities(unittest.TestCase):
     """test the utilities module"""
     def test_maps_critical(self):
         """Logleveler maps critical"""
@@ -41,3 +41,6 @@ class ValidateLogLeveler(unittest.TestCase):
         actual = logleveler('notset')
         expected = 0
         self.assertEqual(expected, actual)
+
+suite = unittest.TestLoader().loadTestsFromTestCase(ValidateUtilities)
+unittest.TextTestRunner(verbosity=2).run(suite)

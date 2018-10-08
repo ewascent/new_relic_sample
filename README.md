@@ -2,19 +2,22 @@
 new_relic_sample
 ================
 
-Grab some files and parse them
+Takes in one or more file paths. Use a sliding window to split the text into triples.
+A sliding window takes the sentence "one two three four five" and produces "one two three", "two three four", "three four five".
+It returns the ranked values.
 
-
+=======
 Description
 ===========
-Run dev_install.sh to pip install the dependancies
-Run run_tests.sh to run the tests. 
+First run the run_tests.sh or run_tests.ps1.
+This will install all dependencies and will create two files from project Gutengurg.
+If you have proxy issues there is a fallback data generator, but it is anemic.
+The files are generated to keep the git clone small.
 
-This is setup to run as a console app or to be called directly 
+Next run the package.
+python src/__main__.py .\tests\data\some_words.txt .\tests\data\more_words.txt
 
-This will prompt for a path
-python src\__main__.py '.\README.md'
-
-This will log out the path if the path is valid
-python src\__main__.py 
-
+====
+Note
+====
+This project has been set up using PyScaffold 3.1. For details and usage see https://pyscaffold.org/.
