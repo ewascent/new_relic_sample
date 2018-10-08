@@ -87,3 +87,6 @@ class ValidateFiler(unittest.TestCase):
         for actual in results:
             self.assertEqual(expected[counter], actual)
             counter += 1
+
+suite = unittest.TestLoader().loadTestsFromTestCase(ValidateFiler)
+unittest.TextTestRunner(verbosity=2).run(suite)
