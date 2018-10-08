@@ -67,5 +67,10 @@ class ValidatePather(unittest.TestCase):
         expected = ( "three", "four", "five")
         self.assertEqual(expected, actual)
 
-    #def test_file_buffering(self):
-#TODO
+    def test_match_maker(self):
+        data = [("the", "lonely", "minotaur"),
+        ("as", "was", "suz"),("as", "was", "suz"),("as", "was", "suz"),("as", "was", "suz"),
+        ("unicorn", "wunicorn", "suz"),("unicorn", "wunicorn", "suz"),("unicorn", "wunicorn", "suz")]
+        expected =[(('as', 'was', 'suz'), 4), (('unicorn', 'wunicorn', 'suz'), 3)]
+        actual = filer.match_maker(data,2)
+        self.assertEqual(expected,actual)

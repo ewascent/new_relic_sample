@@ -10,6 +10,7 @@ import re
 from string import punctuation
 from error import InsufficientArguments
 from error import ArgumentTypeException
+from collections import Counter
 
 def pather(arguments= []):
     """test paths for validity
@@ -66,8 +67,6 @@ def reader(file, mode="r+b", chunk_size=1000):
 
     return words_final
 
-
-#TODO
 def chunker(data, chunk_size = 3):
     """method that takes a file and breaks it into a sliding window (of width n) over data from the iterable
     give a list of [1,2,3,4,5], it will return [(1,2,3), (2,3,4), (3,4,5)]
@@ -88,5 +87,13 @@ def chunker(data, chunk_size = 3):
         result = result[1:] + (elem,)
         yield result
 
-# TODO: implement matching algorythm
-# REF https://docs.python.org/2/library/collections.html#collections.Counter
+def match_maker(collection_to_map, this_many_results = 100):
+    """match_maker does a map aggregation on a collection generator object
+
+    ARGUMENTS:
+    collection_to_map: the thing you want to map and aggregate
+    how_many_results: the number of results to return. Naming things is hard.
+    """
+
+    results = Counter(collection_to_map).most_common(this_many_results)
+    return results
