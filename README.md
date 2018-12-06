@@ -1,6 +1,6 @@
 ================
 
-new_relic_sample
+python_file_sample
 
 ================
 
